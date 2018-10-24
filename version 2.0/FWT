@@ -1,0 +1,38 @@
+& 运算
+void Fast_Walsh_Hadamard_Transform(LL x[],int len,int mode)//&运算
+{
+    for(int i=2;i<=len;i<<=1)
+    {
+        int step=i>>1;
+        for(int j=0;j<len;j+=i)
+            for(int k=j;k<j+step;k++)
+                a[k+step]+=a[k]*mode;
+    }
+}
+|运算
+void Fast_Walsh_Hadamard_Transform(LL x[],int len,int mode)
+{
+    for(int i=2;i<=len;i<<=1)
+    {
+        int step=i>>1;
+        for(int j=0;j<len;j+=i)
+            for(int k=j;k<j+step;k++)
+                a[k]+=a[k+step]*mode;
+    }
+}
+^运算
+void Fast_Walsh_Hadamard_Transform(LL x[],int len,int mode)
+{
+    for(int i=2;i<=len;i<<=1)
+    {
+        int step=i>>1;
+        for(int j=0;j<len;j+=i)
+            for(int k=j;k<j+step;k++)
+            {
+                LL a=x[k],b=x[k+step];
+                x[k]=(a+b)%mod;
+                x[k+step]=(a-b+mod)%mod;
+                if(mode==-1) (x[k]*=ni)%=mod,(x[k+step]*=ni)%=mod;
+            }
+    }
+}
